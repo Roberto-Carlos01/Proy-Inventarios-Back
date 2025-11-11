@@ -2,8 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './modules/users/users.module';
+import { UsersModule } from './modules/admin/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { RolesModule } from './modules/admin/roles/roles.module';
+import { PermissionsModule } from './modules/admin/permissions/permissions.module';
+import { InventarioModule } from './modules/admin/inventario/inventario.module';
+import { NotaModule } from './modules/admin/nota/nota.module';
+import { ClienteProveedorModule } from './modules/admin/cliente-proveedor/cliente-proveedor.module';
 
 @Module({
   imports: [
@@ -22,7 +27,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         ],
         synchronize: false,
       }),
-    UsersModule],
+    UsersModule,
+    RolesModule,
+    PermissionsModule,
+    InventarioModule,
+    NotaModule,
+    ClienteProveedorModule,
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
