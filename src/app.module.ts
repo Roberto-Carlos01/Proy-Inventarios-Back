@@ -9,6 +9,7 @@ import { PermissionsModule } from './modules/admin/permissions/permissions.modul
 import { InventarioModule } from './modules/admin/inventario/inventario.module';
 import { NotaModule } from './modules/admin/nota/nota.module';
 import { ClienteProveedorModule } from './modules/admin/cliente-proveedor/cliente-proveedor.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ClienteProveedorModule } from './modules/admin/cliente-proveedor/client
     InventarioModule,
     NotaModule,
     ClienteProveedorModule,
+    AuthModule,
     ],
   controllers: [AppController],
   providers: [AppService],
