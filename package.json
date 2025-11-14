@@ -21,13 +21,14 @@
     "typeorm": "ts-node ./node_modules/typeorm/cli",
     "migration:run": "npm run typeorm migration:run -- -d ./typeorm.config.ts",
     "migration:generate": "npm run typeorm -- migration:generate ./src/database/migrations/%npm_config_name% -d ./typeorm.config.ts",
-    "migartion:create": "npm run typeorm -- migartion:create ./src/database/migrations/%npm_config_name%", 
+    "migartion:create": "npm run typeorm -- migartion:create ./src/database/migrations/%npm_config_name%",
     "migrations:revert": "npm run typeorm -- -d -/typeorm.config.ts migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.2.1",
     "@nestjs/typeorm": "^11.0.0",
