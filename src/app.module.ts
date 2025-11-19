@@ -33,7 +33,8 @@ import { AuthModule } from './modules/auth/auth.module';
     PermissionsModule,
     InventarioModule,
     NotaModule,
-    ClienteProveedorModule, 
+    ClienteProveedorModule,
+    AuthModule
     ],
   controllers: [AppController],
   providers: [AppService],
