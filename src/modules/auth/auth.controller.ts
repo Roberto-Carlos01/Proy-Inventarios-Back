@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { request } from 'http';
 import { AuthGuard } from './auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -14,7 +15,8 @@ export class AuthController {
         return this.authService.login(datos)
     }
 
-
+    //habilitamos para swagger
+    @ApiBearerAuth()
     //usamos el siguiente  decorador 
     @UseGuards(AuthGuard)
     //y el metodo get
