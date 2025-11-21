@@ -7,18 +7,21 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../roles/entities/role.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(Role)
+    private roleRepository: Repository<Role>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const { name, email } = createUserDto;
+    const { name, email ,role_ids} = createUserDto;
 
     //verificamos si el usuario ya existe
     const existeUser = await this.userRepository.findOne({
@@ -35,6 +38,14 @@ export class UsersService {
     if (existeEmail) {
       throw new BadRequestException(`El email ${email} ya esta en uso`);
     }
+    //antes de encriptar la contraseña , nos encargamos de los roles
+    let roles: Role[]=[];
+    if(role_ids?.length){
+        roles= await this.roleRepository.find({where: {id: In(role_ids)}});
+        if(role_ids.length != roles.length){
+          throw new BadRequestException(`Uno o mas roles no son validos`);
+        }
+      }
 
     //encriptar la contraseña antes de guardar
     const hashPassword = await bcrypt.hash(createUserDto.password, 12);
@@ -43,6 +54,8 @@ export class UsersService {
       name,
       email,
       password: hashPassword,
+      roles
+
     });
 
     this.userRepository.save(newUser);
@@ -55,6 +68,8 @@ export class UsersService {
     //paginacion
     const queryBuilder = this.userRepository
       .createQueryBuilder('user')
+      //aumentamos la relacion con la tabla user-roles , para mostrar los roles del usuario
+      .leftJoinAndSelect('user.roles','role')
       .where('user.name LIKE :search OR user.email LIKE :search', {
         search: `%${search}%`,
       });
@@ -66,6 +81,7 @@ export class UsersService {
       data: users,
       total,
       page,
+      limit,
       totalPages,
       search,
     };

@@ -1,6 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../../users/entities/user.entity";
 import { Permission } from "../../permissions/entities/permission.entity";
+import { IsArray } from "class-validator";
 
 @Entity('roles')
 export class Role {
