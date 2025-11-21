@@ -14,28 +14,26 @@ import { AuthModule } from './modules/auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.development.env'
+      envFilePath: '.development.env',
     }),
     TypeOrmModule.forRoot({
-        type: 'postgres',
-        host: process.env.DATABASE_HOST || 'localhost',
-        port: +'${process.env.DATABASE_PORT}' || 5432,
-        username: process.env.DATABASE_USER || 'postgres',
-        password: process.env.DATABASE_PASSWORD || 'mi-123456',
-        database: process.env.DATABASE_NAME || 'inventario_back_nest',
-        entities: [
-          __dirname + '/../**/*.entity{.ts,.js}'
-        ],
-        synchronize: false,
-      }),
+      type: 'postgres',
+      host: process.env.DATABASE_HOST || 'localhost',
+      port: +`${process.env.DATABASE_PORT}` || 5432,
+      username: process.env.DATABASE_USER || 'postgres',
+      password: process.env.DATABASE_PASSWORD || 'mi-123456',
+      database: process.env.DATABASE_NAME || 'inventario_back_nest',
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      synchronize: false,
+    }),
     UsersModule,
     RolesModule,
     PermissionsModule,
     InventarioModule,
     NotaModule,
     ClienteProveedorModule,
-    AuthModule
-    ],
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

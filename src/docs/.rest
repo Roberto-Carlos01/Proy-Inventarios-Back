@@ -1,12 +1,25 @@
-POST http://127.0.0.1:3000/auth/login
+### crear usuario
+POST http://127.0.0.1:3000/users
+Content-Type:  application/json
+
+{
+    "name":"Juan",
+    "email":"Juan12@gmail.com",
+    "password":"Juan123456"
+}
+### Listar usuarios
+GET http://127.0.0.1:3000/users?page=1&limit=10
+
+### Mostrar a un usuario
+GET http://127.0.0.1:3000/users/252777eb-7d0f-4ddf-aeb7-ac9215973b9e
+
+### modificar
+PATCH http://127.0.0.1:3000/users/4727b2db-2bd3-46b4-beeb-0ea34081654c
 Content-Type: application/json
 
 {
-    "email": "Juan@gmail.com",
-    "password": "Juan12345"
+    "name": "carlos25MOD",
+    "password": "CarlosMODIFICADO54321"
 }
-
-### Ver Perfil
-GET http://127.0.0.1:3000/auth/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikp1YW5AZ21haWwuY29tIiwiaWQiOiJjZjlmNWY4Yi00MGUyLTQ2MjQtOGQ1Zi1mMDlmZGQzMzFhMmMiLCJpYXQiOjE3NjM0NzA0NTEsImV4cCI6MTc2MzQ3MDUxMX0.rXaJFzg2phlBgNHRDUZ724O8UXAvVx4m9y9kp3rnzts
-
+### Eliminar usuario
+DELETE http://127.0.0.1:3000/users/bd0fdd1a-4a84-4a9c-a2de-d4a6cbbe142c
