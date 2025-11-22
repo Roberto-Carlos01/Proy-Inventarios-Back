@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 export class RolesService {
   constructor(
     @InjectRepository(Role)
-    private roleRepository: Repository<Role>
+    private readonly roleRepository: Repository<Role>
   ){}
 
 
