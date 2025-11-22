@@ -1,1 +1,26 @@
-export class Sucursal {}
+import { User } from "./../../../users/entities/user.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Almacen } from "../../almacen/entities/almacen.entity";
+import { SucursalUser } from "./sucursal_user.entity"
+
+
+@Entity("suscursales")
+export class Sucursal {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column({length: 100})
+    nombre:string;
+
+    @Column({length: 255})
+    direccion: string;
+
+    @Column({length: 100})
+    ciudad:string;
+
+    @OneToMany(() => SucursalUser, su => su.sucursal)
+    usuarios:SucursalUser;
+
+    @OneToMany(() => Almacen, almacen => almacen.sucursal)
+    almacenes: Almacen[]
+}

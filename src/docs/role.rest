@@ -1,0 +1,24 @@
+### crear rol
+POST http://127.0.0.1:3000/roles
+Content-Type:  application/json
+
+{
+    "nombre":"JEFE DE ALMACEN",
+    "descripcion":"Gestiona el almacen"
+}
+### Listar roles
+GET http://127.0.0.1:3000/roles
+
+### Mostrar a un usuario
+GET http://127.0.0.1:3000/users/252777eb-7d0f-4ddf-aeb7-ac9215973b9e
+
+### modificar
+PATCH http://127.0.0.1:3000/users/4727b2db-2bd3-46b4-beeb-0ea34081654c
+Content-Type: application/json
+
+{
+    "name": "carlos25MOD",
+    "password": "CarlosMODIFICADO54321"
+}
+### Eliminar usuario
+DELETE http://127.0.0.1:3000/users/bd0fdd1a-4a84-4a9c-a2de-d4a6cbbe142c
