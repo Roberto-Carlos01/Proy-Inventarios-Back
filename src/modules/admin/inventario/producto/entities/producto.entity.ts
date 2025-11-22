@@ -29,7 +29,7 @@ export class Producto {
     @Column({type: 'date'})
     fecha_registro: Date;
 
-    @ManyToOne(() => Categoria, categoria => categoria.protectos, {eager:true} )
+    @ManyToOne(() => Categoria, categoria => categoria.prodcutos, {eager:true} )
     categoria: Categoria;
 
     @ManyToMany(() => AlmacenProducto, almacen => almacen.productos)

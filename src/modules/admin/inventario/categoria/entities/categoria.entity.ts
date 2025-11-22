@@ -17,8 +17,6 @@ export class Categoria {
     
     @IsArray()
     @OneToMany(() => Producto, producto => producto.categoria)
-    protectos: Producto[];
-
-
+    prodcutos: Producto[];
 
 }
